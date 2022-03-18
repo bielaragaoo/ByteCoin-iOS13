@@ -16,20 +16,22 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         coinManager.getCoinPrice(for: coinManager.currencyArray[row])
-    }
-    
-    var coinManager = CoinManager()
+   
+        coinManager.getCurrency()
+            }
+            
+            var coinManager = CoinManager()
+            
+            @IBOutlet weak var bitCoinLabel: UILabel!
+            @IBOutlet weak var currencyLabel: UILabel!
+            @IBOutlet weak var currencyPicker: UIPickerView!
+            
+            override func viewDidLoad() {
+                super.viewDidLoad()
+                // Do any additional setup after loading the view.
+                currencyPicker.dataSource = self
+                currencyPicker.delegate = self
+            }
 
-    @IBOutlet weak var bitCoinLabel: UILabel!
-    
-    @IBOutlet weak var currencyLabel: UILabel!
-  
-    @IBOutlet weak var currencyPicker: UIPickerView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        currencyPicker.dataSource = self
-        currencyPicker.delegate = self
-    }
-}
+
+        }
