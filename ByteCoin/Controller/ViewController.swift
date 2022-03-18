@@ -1,7 +1,31 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, CoinManagerDelegate {
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            // Do any additional setup after loading the view.
+            coinManager.delegate = self
+            
+            currencyPicker.dataSource = self
+            currencyPicker.delegate = self
+        }
+        
+        func didUpdateCoin(_ currency: String, _ price: String) {
+            
+            DispatchQueue.main.async {
+
+            self.currencyLabel.text = price
+            
+            self.bitCoinLabel.text = currency
+            }}
+        
+        func didFailWithError(error: Error) {
+            print(error)
+        }
+        
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -26,12 +50,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             @IBOutlet weak var currencyLabel: UILabel!
             @IBOutlet weak var currencyPicker: UIPickerView!
             
-            override func viewDidLoad() {
-                super.viewDidLoad()
-                // Do any additional setup after loading the view.
-                currencyPicker.dataSource = self
-                currencyPicker.delegate = self
             }
 
 
-        }
