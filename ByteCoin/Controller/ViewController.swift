@@ -14,7 +14,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return coinManager.currencyArray[row]
     }
     
-    let coinManager = CoinManager()
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        coinManager.getCoinPrice(for: coinManager.currencyArray[row])
+    }
+    
+    var coinManager = CoinManager()
 
     @IBOutlet weak var bitCoinLabel: UILabel!
     
